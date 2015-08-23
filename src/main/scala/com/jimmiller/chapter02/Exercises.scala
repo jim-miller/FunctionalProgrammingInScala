@@ -20,3 +20,9 @@ object Exercise2_2 {
     !as.sliding(2).map(a ⇒ ordered(a(0), a(1))).contains(false)
   }
 }
+
+object Exercise2_3 {
+  def curry[A,B,C](f: (A, B) => C): A => (B => C) = {
+    a ⇒ (b ⇒ f(a, b))
+  }
+}
