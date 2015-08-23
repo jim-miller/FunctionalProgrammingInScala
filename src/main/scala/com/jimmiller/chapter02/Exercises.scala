@@ -14,3 +14,9 @@ object Exercise2_1 {
     go(n, 0, 1)
   }
 }
+
+object Exercise2_2 {
+  def isSorted[A](as: Array[A], ordered: (A,A) ⇒ Boolean): Boolean = {
+    true
+  }
+}
