@@ -32,3 +32,10 @@ object Exercise2_4 {
     (a, b) ⇒ f(a)(b)
   }
 }
+
+object Exercise2_5 {
+  def compose[A,B,C](f: B ⇒ C, g: A ⇒ B): A ⇒ C = {
+    a ⇒ f(g(a))
+  }
+}
+
