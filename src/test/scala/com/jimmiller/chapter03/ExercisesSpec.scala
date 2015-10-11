@@ -1,6 +1,6 @@
 package com.jimmiller.chapter03
 
-import org.scalatest.{Matchers, FlatSpecLike}
+import org.scalatest.{FlatSpecLike, Matchers}
 
 class ExercisesSpec extends FlatSpecLike with Matchers {
 
@@ -19,6 +19,13 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
     val origList = List("a", "b", "c")
     val expectedList = List("b", "c")
 
-    List.tail(origList) shouldEqual expectedList
+    List.tail(origList) shouldBe expectedList
+  }
+
+  "Exercise 3.3" should "implement the function setHead for replacing the first element of a List" in {
+    val origList = List(1, 2, 3, 4)
+    val expectedList = List(0, 1, 2, 3, 4)
+
+    List.setHead(origList, 0) shouldEqual expectedList
   }
 }
