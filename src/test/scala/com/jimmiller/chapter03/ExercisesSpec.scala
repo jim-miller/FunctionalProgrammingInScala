@@ -14,4 +14,11 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
     }
     matchedResult shouldBe 3
   }
+
+  "Exercise 3.2" should "implement the function tail for removing the first element of a List" in {
+    val origList = List("a", "b", "c")
+    val expectedList = List("b", "c")
+
+    List.tail(origList) shouldEqual expectedList
+  }
 }
