@@ -34,4 +34,11 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
 
     List.drop(origList, 2) shouldEqual List(3, 4)
   }
+
+  "Exercise 3.5" should "implement dropWhile, which removes elements from the List prefix as long as they match a predicate" in {
+    val origList = List(1.2, 1.3, 1.4, 1.5, 1.6)
+    val predicate = (x: Double) ⇒ x < 1.45
+
+    List.dropWhile(origList, predicate) shouldEqual List(1.5, 1.6)
+  }
 }

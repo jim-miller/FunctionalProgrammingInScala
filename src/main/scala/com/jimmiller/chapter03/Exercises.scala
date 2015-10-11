@@ -28,6 +28,17 @@ object List {
     case Nil ⇒ sys.error("Error: empty list encountered")
   }
 
+  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
+    case Cons(h, _) ⇒ {
+      if (f(h)) {
+        dropWhile(tail(l), f)
+      } else {
+        l
+      }
+    }
+    case Nil ⇒ sys.error("Cannot drop from empty List")
+  }
+
   def product(ds: List[Double]): Double = ds match {
     case Nil ⇒ 1.0
     case Cons(0.0, _) ⇒ 0.0
