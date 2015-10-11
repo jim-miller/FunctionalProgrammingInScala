@@ -39,6 +39,13 @@ object List {
     case Nil ⇒ sys.error("Cannot drop from empty List")
   }
 
+  /** Returns a List consisting of all but the last element of a List */
+  def init[A](l: List[A]): List[A] = l match {
+    case Cons(_, Nil) ⇒ Nil
+    case Cons(h, t) ⇒ Cons(h, init(t))
+    case Nil ⇒ sys.error("Error: empty list encountered")
+  }
+
   def product(ds: List[Double]): Double = ds match {
     case Nil ⇒ 1.0
     case Cons(0.0, _) ⇒ 0.0

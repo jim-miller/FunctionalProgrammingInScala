@@ -41,4 +41,10 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
 
     List.dropWhile(origList, predicate) shouldEqual List(1.5, 1.6)
   }
+
+  "Exercise 3.6" should "implement init to return a List consisting of all but the last element of a List" in {
+    val given = List(1,2,3,4)
+
+    List.init(given) shouldEqual List(1,2,3)
+  }
 }
