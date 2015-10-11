@@ -28,4 +28,10 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
 
     List.setHead(origList, 0) shouldEqual expectedList
   }
+
+  "Exercise 3.4" should "generalize tail into a drop function which removes the first n elements from a list" in {
+    val origList = List(1, 2, 3, 4)
+
+    List.drop(origList, 2) shouldEqual List(3, 4)
+  }
 }

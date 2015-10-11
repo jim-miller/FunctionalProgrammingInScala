@@ -16,11 +16,16 @@ object List {
     }
   }
 
-  def setHead[A](as: List[A], a: A) = Cons(a, as)
+  def drop[A](l: List[A], i: Int): List[A] = l match {
+    case Cons(_, t) ⇒ {
+      if (i > 0) {
+        drop(t, i - 1)
+      } else {
+        l
+      }
 
-  def sum(ints: List[Int]): Int = ints match {
-    case Nil ⇒ 0
-    case Cons(x, xs) ⇒ x + sum(xs)
+    }
+    case Nil ⇒ sys.error("Error: empty list encountered")
   }
 
   def product(ds: List[Double]): Double = ds match {
@@ -29,8 +34,13 @@ object List {
     case Cons(x, xs) ⇒ x * product(xs)
   }
 
-  def tail[A](as: List[A]): List[A] = as match {
-    case Cons(_, t) ⇒ t
-    case Nil ⇒ sys.error("Error: tailing an empty list")
+  def setHead[A](l: List[A], h: A) = Cons(h, l)
+
+  def sum(ints: List[Int]): Int = ints match {
+    case Nil ⇒ 0
+    case Cons(x, xs) ⇒ x + sum(xs)
   }
+
+  def tail[A](l: List[A]): List[A] = drop(l, 1)
+
 }
