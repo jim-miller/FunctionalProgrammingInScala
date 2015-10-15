@@ -73,4 +73,8 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
     sum3(List(1,2,3,4,5,6)) shouldBe 21
     product(List(5,5,5)) shouldBe 125
   }
+
+  "Exercise 3.12" should "implement a reverse function that relies on folding" in {
+    reverse(List(1,2,3)) shouldBe List(3,2,1)
+  }
 }

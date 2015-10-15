@@ -83,4 +83,8 @@ object List {
     foldRight(as,0)((_,t) ⇒ t + 1)
   }
 
+  def reverse[A](as: List[A]): List[A] = {
+    foldLeft(as, Nil: List[A])((h,t) ⇒ Cons(t,h))
+  }
+
 }
