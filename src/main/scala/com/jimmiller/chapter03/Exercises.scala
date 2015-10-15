@@ -69,4 +69,8 @@ object List {
 
   def tail[A](l: List[A]): List[A] = drop(l, 1)
 
+  def length[A](as: List[A]): Int = {
+    foldRight(as,0)((_,t) ⇒ t + 1)
+  }
+
 }

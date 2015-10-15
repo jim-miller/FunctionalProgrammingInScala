@@ -1,6 +1,7 @@
 package com.jimmiller.chapter03
 
 import org.scalatest.{FlatSpecLike, Matchers}
+import com.jimmiller.chapter03.List._
 
 class ExercisesSpec extends FlatSpecLike with Matchers {
 
@@ -9,7 +10,7 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
       case Cons(x, Cons(2, Cons(4, _))) => x
       case Nil => 42
       case Cons(x, Cons(y, Cons(3, Cons(4, _)))) => x + y
-      case Cons(h, t) => h + List.sum(t)
+      case Cons(h, t) => h + sum(t)
       case _ => 101
     }
     matchedResult shouldBe 3
@@ -19,41 +20,48 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
     val origList = List("a", "b", "c")
     val expectedList = List("b", "c")
 
-    List.tail(origList) shouldBe expectedList
+    tail(origList) shouldBe expectedList
   }
 
   "Exercise 3.3" should "implement the function setHead for replacing the first element of a List" in {
     val origList = List(1, 2, 3, 4)
     val expectedList = List(0, 1, 2, 3, 4)
 
-    List.setHead(origList, 0) shouldEqual expectedList
+    setHead(origList, 0) shouldEqual expectedList
   }
 
   "Exercise 3.4" should "generalize tail into a drop function which removes the first n elements from a list" in {
     val origList = List(1, 2, 3, 4)
 
-    List.drop(origList, 2) shouldEqual List(3, 4)
+    drop(origList, 2) shouldEqual List(3, 4)
   }
 
   "Exercise 3.5" should "implement dropWhile, which removes elements from the List prefix as long as they match a predicate" in {
     val origList = List(1.2, 1.3, 1.4, 1.5, 1.6)
 
-    List.dropWhile(origList)(x ⇒ x < 1.45) shouldEqual List(1.5, 1.6)
+    dropWhile(origList)(x ⇒ x < 1.45) shouldEqual List(1.5, 1.6)
   }
 
   "Exercise 3.6" should "implement init to return a List consisting of all but the last element of a List" in {
     val given = List(1,2,3,4)
 
-    List.init(given) shouldEqual List(1,2,3)
+    init(given) shouldEqual List(1,2,3)
   }
 
   "Exercise 3.7" should "discuss if product, implemented using foldRight, can be short-circuited if it encounters 0.0" in {
-    List.foldRight(List(1,2,3,4), 1)(_*_) shouldBe 24
-    List.product2(List(1,2,3)) shouldBe 6
-    List.sum2(List(1,2,3,4,5,6)) shouldBe 21
+    foldRight(List(1,2,3,4), 1)(_*_) shouldBe 24
+    product2(List(1,2,3)) shouldBe 6
+    sum2(List(1,2,3,4,5,6)) shouldBe 21
 
     // Short circuiting a product operation encountering 0.0 can't be done in the current
     // implementation since f()'s arguments have to be evaluated beforehand
+  }
 
+  "Exercise 3.8" should "demonstrate constructing a List via foldRight" in {
+    // See ExerciseWorksheet for demonstration
+  }
+
+  "Exercise 3.9" should "compute the length of a list using foldRight" in {
+    List.length(List("a","b","c","d","e")) shouldBe 5
   }
 }
