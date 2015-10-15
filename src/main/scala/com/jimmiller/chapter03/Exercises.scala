@@ -57,7 +57,7 @@ object List {
   }
 
   def foldRightUsingFoldLeft[A,B](as: List[A], z: B)(f: (A,B) ⇒ B): B = {
-    foldLeft(as, (b:B) => b)((g,a) => b => g(f(a,b)))(z)
+    foldLeft(reverseUsingFoldLeft(as), z)((b,a) => f(a,b))
   }
 
   def foldRight[A,B](as: List[A], z: B)(f: (A,B) ⇒ B): B = as match {
@@ -98,5 +98,8 @@ object List {
   def reverseUsingFoldLeft[A](as: List[A]): List[A] = {
     foldLeft(as, Nil: List[A])((h,t) ⇒ Cons(t,h))
   }
+
+  def appendUsingFoldRight[A](as: List[A], a: List[A]): List[A] =
+    foldRight(as, a)(Cons(_,_))
 
 }

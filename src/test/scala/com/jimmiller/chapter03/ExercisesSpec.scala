@@ -83,4 +83,8 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
     foldLeftUsingFoldRight(List(6,6), 0)(_+_) shouldBe 12
     foldRightUsingFoldLeft(List(6,6), 0)(_+_) shouldBe 12
   }
+
+  "Exercise 3.14" should "implement addend using foldRight" in {
+    appendUsingFoldRight(List(1,2,3), List(4)) shouldBe List(1,2,3,4)
+  }
 }
