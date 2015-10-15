@@ -71,6 +71,10 @@ object List {
 
   def product2(ds: List[Double]): Double = foldRight(ds, 1.0)(_*_)
 
+  def sum3(ints: List[Int]): Int = foldLeft(ints, 0)(_+_)
+
+  def product3(ds: List[Double]): Double = foldLeft(ds, 1.0)(_*_)
+
   def setHead[A](l: List[A], h: A) = Cons(h, l)
 
   def tail[A](l: List[A]): List[A] = drop(l, 1)

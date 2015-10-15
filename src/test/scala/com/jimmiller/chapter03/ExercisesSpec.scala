@@ -68,4 +68,9 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
   "Exercise 3.10" should "implement foldLeft in a tail-recursive fashion" in {
     foldLeft(List(1,2,3,4,5), 1.0)(_*_) shouldBe 120
   }
+
+  "Exercise 3.11" should "implement sum and product using foldLeft" in {
+    sum3(List(1,2,3,4,5,6)) shouldBe 21
+    product(List(5,5,5)) shouldBe 125
+  }
 }
