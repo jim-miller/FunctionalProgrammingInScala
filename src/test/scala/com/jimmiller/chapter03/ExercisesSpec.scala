@@ -64,4 +64,8 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
   "Exercise 3.9" should "compute the length of a list using foldRight" in {
     List.length(List("a","b","c","d","e")) shouldBe 5
   }
+
+  "Exercise 3.10" should "implement foldLeft in a tail-recursive fashion" in {
+    foldLeft(List(1,2,3,4,5), 1.0)(_*_) shouldBe 120
+  }
 }
