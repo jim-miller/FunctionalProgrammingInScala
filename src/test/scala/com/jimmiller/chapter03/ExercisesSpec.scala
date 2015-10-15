@@ -87,4 +87,8 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
   "Exercise 3.14" should "implement addend using foldRight" in {
     appendUsingFoldRight(List(1,2,3), List(4)) shouldBe List(1,2,3,4)
   }
+
+  "Exercise 3.15" should "implement concat in a linear way" in {
+    concat(List(List(1,2,3), List(4,5,6))) shouldBe List(1,2,3,4,5,6)
+  }
 }
