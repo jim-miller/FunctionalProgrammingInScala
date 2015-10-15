@@ -1,7 +1,7 @@
 package com.jimmiller.chapter03
 
-import org.scalatest.{FlatSpecLike, Matchers}
 import com.jimmiller.chapter03.List._
+import org.scalatest.{FlatSpecLike, Matchers}
 
 class ExercisesSpec extends FlatSpecLike with Matchers {
 
@@ -50,8 +50,8 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
 
   "Exercise 3.7" should "discuss if product, implemented using foldRight, can be short-circuited if it encounters 0.0" in {
     foldRight(List(1,2,3,4), 1)(_*_) shouldBe 24
-    product2(List(1,2,3)) shouldBe 6
-    sum2(List(1,2,3,4,5,6)) shouldBe 21
+    productUsingFoldRight(List(1,2,3)) shouldBe 6
+    sumUsingFoldRight(List(1,2,3,4,5,6)) shouldBe 21
 
     // Short circuiting a product operation encountering 0.0 can't be done in the current
     // implementation since f()'s arguments have to be evaluated beforehand
@@ -62,19 +62,20 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
   }
 
   "Exercise 3.9" should "compute the length of a list using foldRight" in {
-    List.length(List("a","b","c","d","e")) shouldBe 5
+    List.lengthUsingFoldRight(List("a","b","c","d","e")) shouldBe 5
   }
 
   "Exercise 3.10" should "implement foldLeft in a tail-recursive fashion" in {
     foldLeft(List(1,2,3,4,5), 1.0)(_*_) shouldBe 120
   }
 
-  "Exercise 3.11" should "implement sum and product using foldLeft" in {
-    sum3(List(1,2,3,4,5,6)) shouldBe 21
-    product(List(5,5,5)) shouldBe 125
+  "Exercise 3.11" should "implement sum, length, and product using foldLeft" in {
+    sumUsingFoldLeft(List(1,2,3,4,5,6)) shouldBe 21
+    productUsingFoldLeft(List(5,5,5)) shouldBe 125
+    lengthUsingFoldLeft(List("Doc", "Grumpy", "Happy", "Sleepy", "Bashful", "Sneezy", "Dopey")) shouldBe 7
   }
 
   "Exercise 3.12" should "implement a reverse function that relies on folding" in {
-    reverse(List(1,2,3)) shouldBe List(3,2,1)
+    reverseUsingFoldLeft(List(1,2,3)) shouldBe List(3,2,1)
   }
 }

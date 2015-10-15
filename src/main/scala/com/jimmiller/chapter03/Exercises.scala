@@ -67,23 +67,27 @@ object List {
     case Cons(x, xs) ⇒ x * product(xs)
   }
 
-  def sum2(ints: List[Int]): Int = foldRight(ints, 0)(_+_)
+  def sumUsingFoldRight(ints: List[Int]): Int = foldRight(ints, 0)(_+_)
 
-  def product2(ds: List[Double]): Double = foldRight(ds, 1.0)(_*_)
+  def productUsingFoldRight(ds: List[Double]): Double = foldRight(ds, 1.0)(_*_)
 
-  def sum3(ints: List[Int]): Int = foldLeft(ints, 0)(_+_)
+  def sumUsingFoldLeft(ints: List[Int]): Int = foldLeft(ints, 0)(_+_)
 
-  def product3(ds: List[Double]): Double = foldLeft(ds, 1.0)(_*_)
+  def productUsingFoldLeft(ds: List[Double]): Double = foldLeft(ds, 1.0)(_*_)
 
   def setHead[A](l: List[A], h: A) = Cons(h, l)
 
   def tail[A](l: List[A]): List[A] = drop(l, 1)
 
-  def length[A](as: List[A]): Int = {
+  def lengthUsingFoldRight[A](as: List[A]): Int = {
     foldRight(as,0)((_,t) ⇒ t + 1)
   }
 
-  def reverse[A](as: List[A]): List[A] = {
+  def lengthUsingFoldLeft[A](as: List[A]): Int = {
+    foldLeft(as,0)((h,_) ⇒ h + 1)
+  }
+
+  def reverseUsingFoldLeft[A](as: List[A]): List[A] = {
     foldLeft(as, Nil: List[A])((h,t) ⇒ Cons(t,h))
   }
 
