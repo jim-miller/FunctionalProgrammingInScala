@@ -28,10 +28,10 @@ object List {
     case Nil ⇒ sys.error("Error: empty list encountered")
   }
 
-  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
+  def dropWhile[A](l: List[A])(f: A => Boolean): List[A] = l match {
     case Cons(h, _) ⇒ {
       if (f(h)) {
-        dropWhile(tail(l), f)
+        dropWhile(tail(l))(f)
       } else {
         l
       }
@@ -46,18 +46,26 @@ object List {
     case Nil ⇒ sys.error("Error: empty list encountered")
   }
 
-  def product(ds: List[Double]): Double = ds match {
-    case Nil ⇒ 1.0
-    case Cons(0.0, _) ⇒ 0.0
-    case Cons(x, xs) ⇒ x * product(xs)
+  def foldRight[A,B](as: List[A], z: B)(f: (A,B) ⇒ B): B = as match {
+    case Nil ⇒ z
+    case Cons(x, xs) ⇒ f(x, foldRight(xs,z)(f))
   }
-
-  def setHead[A](l: List[A], h: A) = Cons(h, l)
 
   def sum(ints: List[Int]): Int = ints match {
     case Nil ⇒ 0
     case Cons(x, xs) ⇒ x + sum(xs)
   }
+
+  def product(ds: List[Double]): Double = ds match {
+    case Nil ⇒ 1.0
+    case Cons(x, xs) ⇒ x * product(xs)
+  }
+
+  def sum2(ints: List[Int]): Int = foldRight(ints, 0)(_+_)
+
+  def product2(ds: List[Double]): Double = foldRight(ds, 1.0)(_*_)
+
+  def setHead[A](l: List[A], h: A) = Cons(h, l)
 
   def tail[A](l: List[A]): List[A] = drop(l, 1)
 

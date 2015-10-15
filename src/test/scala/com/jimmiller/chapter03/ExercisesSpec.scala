@@ -37,14 +37,23 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
 
   "Exercise 3.5" should "implement dropWhile, which removes elements from the List prefix as long as they match a predicate" in {
     val origList = List(1.2, 1.3, 1.4, 1.5, 1.6)
-    val predicate = (x: Double) ⇒ x < 1.45
 
-    List.dropWhile(origList, predicate) shouldEqual List(1.5, 1.6)
+    List.dropWhile(origList)(x ⇒ x < 1.45) shouldEqual List(1.5, 1.6)
   }
 
   "Exercise 3.6" should "implement init to return a List consisting of all but the last element of a List" in {
     val given = List(1,2,3,4)
 
     List.init(given) shouldEqual List(1,2,3)
+  }
+
+  "Exercise 3.7" should "discuss if product, implemented using foldRight, can be short-circuited if it encounters 0.0" in {
+    List.foldRight(List(1,2,3,4), 1)(_*_) shouldBe 24
+    List.product2(List(1,2,3)) shouldBe 6
+    List.sum2(List(1,2,3,4,5,6)) shouldBe 21
+
+    // Short circuiting a product operation encountering 0.0 can't be done in the current
+    // implementation since f()'s arguments have to be evaluated beforehand
+
   }
 }
