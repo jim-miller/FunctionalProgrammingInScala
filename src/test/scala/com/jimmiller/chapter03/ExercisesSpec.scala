@@ -78,4 +78,9 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
   "Exercise 3.12" should "implement a reverse function that relies on folding" in {
     reverseUsingFoldLeft(List(1,2,3)) shouldBe List(3,2,1)
   }
+
+  "Exercise 3.13" should "expresses foldLeft as an operation of foldRight and vice versa" in {
+    foldLeftUsingFoldRight(List(6,6), 0)(_+_) shouldBe 12
+    foldRightUsingFoldLeft(List(6,6), 0)(_+_) shouldBe 12
+  }
 }
