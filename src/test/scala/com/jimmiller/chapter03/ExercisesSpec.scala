@@ -103,4 +103,8 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
   "Exercise 3.18" should "implement map that modifies each element in a list while maintaining the list structure" in {
     map(List(1,2,3))(_*10) shouldBe List(10,20,30)
   }
+
+  "Exercise 3.19" should "implement filter that removes elements from a list unless they satisfy a given predicate" in {
+    filter(List(1,2,3,4))(_ % 2 == 0) shouldBe List(2,4)
+  }
 }
