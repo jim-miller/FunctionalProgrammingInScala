@@ -108,4 +108,8 @@ object List {
   def addOneToEachInteger(ints: List[Int]): List[Int] = {
     foldRight(ints, Nil:List[Int])((x,xs) ⇒ Cons(x+1, xs))
   }
+
+  def turnListDoubleToListString(ds: List[Double]): List[String] = {
+    foldRight(ds, Nil:List[String])((x,xs) ⇒ Cons(x.toString, xs))
+  }
 }

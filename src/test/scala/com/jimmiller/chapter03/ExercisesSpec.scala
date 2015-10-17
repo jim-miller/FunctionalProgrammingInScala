@@ -95,4 +95,8 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
   "Exercise 3.16" should "transform a list of integers by adding 1 to each element" in {
     addOneToEachInteger(List(1,2,3)) shouldBe List(2,3,4)
   }
+
+  "Exercise 3.16" should "turn each value in a List[Double] into a String" in {
+    turnListDoubleToListString(List(2.1, 4.2, 5.3)) shouldBe List("2.1", "4.2", "5.3")
+  }
 }
