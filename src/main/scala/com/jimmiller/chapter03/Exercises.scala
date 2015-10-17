@@ -105,8 +105,7 @@ object List {
   def concat[A](as: List[List[A]]): List[A] =
     foldRight(as, Nil:List[A])(appendUsingFoldRight)
 
-  def addOneToEachInteger(ints: List[Int]): List[Int] = ints match {
-    case Nil ⇒ Nil
-    case Cons(h,t) ⇒ Cons(h+1, addOneToEachInteger(t))
+  def addOneToEachInteger(ints: List[Int]): List[Int] = {
+    foldRight(ints, Nil:List[Int])((x,xs) ⇒ Cons(x+1, xs))
   }
 }
