@@ -96,7 +96,11 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
     addOneToEachInteger(List(1,2,3)) shouldBe List(2,3,4)
   }
 
-  "Exercise 3.16" should "turn each value in a List[Double] into a String" in {
+  "Exercise 3.17" should "turn each value in a List[Double] into a String" in {
     turnListDoubleToListString(List(2.1, 4.2, 5.3)) shouldBe List("2.1", "4.2", "5.3")
+  }
+
+  "Exercise 3.18" should "implement map that modifies each element in a list while maintaining the list structure" in {
+    map(List(1,2,3))(_*10) shouldBe List(10,20,30)
   }
 }
