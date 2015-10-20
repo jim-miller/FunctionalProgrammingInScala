@@ -120,4 +120,12 @@ object List {
   def filter[A](as: List[A])(f: A => Boolean): List[A] = {
     foldRight(as, Nil: List[A])((x,xs) ⇒ if (f(x)) Cons(x, xs) else filter(xs)(f))
   }
+
+  /**
+   * flatMap works like map except that the function given will return a list instead of a single
+   * result, and that list should be inserted into the final resulting list.
+   */
+  def flatMap[A,B](as: List[A])(f: A => List[B]): List[B] = {
+    concat(map(as)(f))
+  }
 }

@@ -6,7 +6,10 @@ import com.jimmiller.chapter03.List._
 // foldRight(), like apply(), uses recursion to construct
 // the list from head to tail (i.e. left to right)
 
+val curr = foldRight(_, Nil:List[Int])(Cons(_,_))
+
 foldRight(List(1,2,3), Nil:List[Int])(Cons(_,_))
+curr(List(1,2,3))
 
 // Traced out:
 foldRight(Cons(1, Cons(2, Cons(3, Nil))), Nil:List[Int])(Cons(_,_))
@@ -34,4 +37,13 @@ def addOne(as: List[Int]): List[Int] = {
 
 addOne(ints)
 foldRight(List(1,2,3), Nil:List[Int])((x,xs) ⇒ Cons(x+1, xs))
+
+
+// Exercise 3.20 - playing with flatMap
+val as = List(1,2,3)
+def f[A](i: A) = { List(i,i) }
+flatMap(as)(f)
+
+val mapped = map(as)(f)
+concat(mapped)
 

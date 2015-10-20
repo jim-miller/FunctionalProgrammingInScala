@@ -107,4 +107,8 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
   "Exercise 3.19" should "implement filter that removes elements from a list unless they satisfy a given predicate" in {
     filter(List(1,2,3,4))(_ % 2 == 0) shouldBe List(2,4)
   }
+
+  "Exercise 3.20" should "implement flatMap" in {
+    flatMap(List(1,2,3))(i => List(i,i)) shouldBe List(1,1,2,2,3,3)
+  }
 }
