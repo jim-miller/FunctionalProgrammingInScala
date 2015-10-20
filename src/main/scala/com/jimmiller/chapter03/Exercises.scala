@@ -57,6 +57,10 @@ object List {
     })
   }
 
+  def filterUsingFlatMap[A](as: List[A])(f: A => Boolean): List[A] = {
+    flatMap(as)(a ⇒ if (f(a)) { Cons(a,Nil)} else { Nil })
+  }
+
   /**
    * flatMap works like map except that the function given will return a list instead of a single
    * result, and that list should be inserted into the final resulting list.

@@ -111,4 +111,8 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
   "Exercise 3.20" should "implement flatMap" in {
     flatMap(List(1,2,3))(i => List(i,i)) shouldBe List(1,1,2,2,3,3)
   }
+
+  "Exercise 3.21" should "implement filter using flatMap" in {
+    filterUsingFlatMap(List("a", "ab", "abc"))(_.contains("b")) shouldBe List("ab", "abc")
+  }
 }
