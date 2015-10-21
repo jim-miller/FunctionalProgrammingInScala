@@ -6,10 +6,10 @@ import com.jimmiller.chapter03.List._
 // foldRight(), like apply(), uses recursion to construct
 // the list from head to tail (i.e. left to right)
 
-val curr = foldRight(_, Nil:List[Int])(Cons(_,_))
+val curr = foldRight(List(1,2,3), Nil:List[Int])(_)
 
 foldRight(List(1,2,3), Nil:List[Int])(Cons(_,_))
-curr(List(1,2,3))
+curr(Cons(_,_))
 
 // Traced out:
 foldRight(Cons(1, Cons(2, Cons(3, Nil))), Nil:List[Int])(Cons(_,_))
@@ -47,3 +47,4 @@ flatMap(as)(f)
 val mapped = map(as)(f)
 concat(mapped)
 
+zipIntLists(Nil, Nil)

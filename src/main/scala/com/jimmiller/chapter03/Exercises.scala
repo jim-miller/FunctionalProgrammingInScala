@@ -23,12 +23,6 @@ object List {
     }
   }
 
-  def combineIntLists(l1: List[Int], l2: List[Int]): List[Int] = (l1, l2) match {
-    case (Nil, _) ⇒ Nil
-    case (_, Nil) ⇒ Nil
-    case (Cons(x,xs), Cons(y,ys)) ⇒ Cons(x+y, combineIntLists(xs,ys))
-  }
-
   def concat[A](as: List[List[A]]): List[A] =
     foldRight(as, Nil: List[A])(appendUsingFoldRight)
 
@@ -141,5 +135,17 @@ object List {
 
   def turnListDoubleToListString(ds: List[Double]): List[String] = {
     foldRight(ds, Nil: List[String])((x, xs) ⇒ Cons(x.toString, xs))
+  }
+
+  def zipIntLists(l1: List[Int], l2: List[Int]): List[Int] = (l1, l2) match {
+    case (Nil, _) ⇒ Nil
+    case (_, Nil) ⇒ Nil
+    case (Cons(x,xs), Cons(y,ys)) ⇒ Cons(x+y, zipIntLists(xs,ys))
+  }
+
+  def zipWith[A,B,C](l1: List[A], l2: List[B])(f: (A,B) => C): List[C] = (l1, l2) match {
+    case (Nil, _) => Nil
+    case (_, Nil) => Nil
+    case (Cons(x,xs), Cons(y,ys)) => Cons(f(x,y), zipWith(xs,ys)(f))
   }
 }

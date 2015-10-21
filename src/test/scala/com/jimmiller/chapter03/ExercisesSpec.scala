@@ -117,6 +117,15 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
   }
 
   "Exercise 3.22" should "accept two lists and construct a new list by adding corresponding elements" in {
-    combineIntLists(List(1,2,3), List(4,5,6)) shouldBe List(5,7,9)
+    zipIntLists(List(1,2,3), List(4,5,6)) shouldBe List(5,7,9)
+    zipIntLists(List(1,3,5), List(2,4)) shouldBe List(3,7)
+  }
+
+  "Exercise 3.23" should "generalize a zip function" in {
+    val alphList = List("a","b","c")
+    val numList = List(1,2,3)
+    val expected = List(List("a", 1), List("b", 2), List("c", 3))
+
+    zipWith(alphList, numList)((a,b) ⇒ Cons(a, Cons(b,Nil))) shouldBe expected
   }
 }
