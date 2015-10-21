@@ -23,6 +23,12 @@ object List {
     }
   }
 
+  def combineIntLists(l1: List[Int], l2: List[Int]): List[Int] = (l1, l2) match {
+    case (Nil, _) ⇒ Nil
+    case (_, Nil) ⇒ Nil
+    case (Cons(x,xs), Cons(y,ys)) ⇒ Cons(x+y, combineIntLists(xs,ys))
+  }
+
   def concat[A](as: List[List[A]]): List[A] =
     foldRight(as, Nil: List[A])(appendUsingFoldRight)
 
