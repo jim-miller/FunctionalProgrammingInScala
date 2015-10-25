@@ -102,16 +102,17 @@ object List {
   }
 
   @annotation.tailrec
-  private def startsWith[A](l: List[A], prefix: List[A]): Boolean = (l,prefix) match {
-    case (_,Nil) => true
-    case (Cons(h,t),Cons(h2,t2)) if h == h2 => startsWith(t, t2)
+  private def startsWith[A](l: List[A], prefix: List[A]): Boolean = (l, prefix) match {
+    case (_, Nil) => true
+    case (Cons(h, t), Cons(h2, t2)) if h == h2 => startsWith(t, t2)
     case _ => false
   }
+
   @annotation.tailrec
   def hasSubsequenceBookSolution[A](sup: List[A], sub: List[A]): Boolean = sup match {
     case Nil => sub == Nil
     case _ if startsWith(sup, sub) => true
-    case Cons(_,t) => hasSubsequenceBookSolution(t, sub)
+    case Cons(_, t) => hasSubsequenceBookSolution(t, sub)
   }
 
   /** Returns a List consisting of all but the last element of a List */
@@ -173,5 +174,19 @@ object List {
     case (Nil, _) => Nil
     case (_, Nil) => Nil
     case (Cons(x, xs), Cons(y, ys)) => Cons(f(x, y), zipWith(xs, ys)(f))
+  }
+}
+
+sealed trait Tree[+A]
+
+case class Leaf[A](value: A) extends Tree[A]
+
+case class Branch[A](left: Tree[A], right: Tree[A]) extends Tree[A]
+
+object Tree {
+
+  def size[A](t: Tree[A]): Int = t match {
+    case Branch(l, r) ⇒ 1 + size(l) + size(r)
+    case Leaf(_) ⇒ 1
   }
 }

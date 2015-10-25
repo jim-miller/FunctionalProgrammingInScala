@@ -1,6 +1,7 @@
 package com.jimmiller.chapter03
 
 import com.jimmiller.chapter03.List._
+import com.jimmiller.chapter03.Tree._
 import org.scalatest.{FlatSpecLike, Matchers}
 
 class ExercisesSpec extends FlatSpecLike with Matchers {
@@ -138,5 +139,15 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
 
     hasSubsequence(List(1,2,3,4), List(5)) shouldBe false
     hasSubsequence(List(1,2,3,4), List(1,3,4)) shouldBe false
+  }
+
+  "Exercise 3.25" should "implement a size function that counts the number of nodes (leaves and branches) in a tree" in {
+    val singleLeaf = Leaf(1)
+    val twoLeafTree = Branch(singleLeaf, singleLeaf)
+    val imbalancedTree = Branch(twoLeafTree, singleLeaf)
+
+    Tree.size(singleLeaf) shouldBe 1
+    Tree.size(twoLeafTree) shouldBe 3
+    Tree.size(imbalancedTree) shouldBe 5
   }
 }
