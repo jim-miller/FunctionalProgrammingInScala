@@ -128,4 +128,15 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
 
     zipWith(alphList, numList)((a,b) ⇒ Cons(a, Cons(b,Nil))) shouldBe expected
   }
+
+  "Exercise 3.24" should "implement hasSubsequence for checking whether a List contains another List as a subsequence" in {
+    hasSubsequence(List(1,2,3,4), List(1)) shouldBe true
+    hasSubsequence(List(1,2,3,4), List(3)) shouldBe true
+    hasSubsequence(List(1,2,3,4), List(1,2)) shouldBe true
+    hasSubsequence(List(1,2,3,4), List(2,3)) shouldBe true
+    hasSubsequence(List(1,2,3,4), List(2,3,4)) shouldBe true
+
+    hasSubsequence(List(1,2,3,4), List(5)) shouldBe false
+    hasSubsequence(List(1,2,3,4), List(1,3,4)) shouldBe false
+  }
 }

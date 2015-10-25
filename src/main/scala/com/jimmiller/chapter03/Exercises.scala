@@ -58,7 +58,7 @@ object List {
   }
 
   def filterUsingFlatMap[A](as: List[A])(f: A => Boolean): List[A] = {
-    flatMap(as)(a ⇒ if (f(a)) { Cons(a,Nil)} else { Nil })
+    flatMap(as)(a ⇒ if (f(a)) {Cons(a, Nil)} else {Nil})
   }
 
   /**
@@ -86,6 +86,32 @@ object List {
 
   def foldRightUsingFoldLeft[A, B](as: List[A], z: B)(f: (A, B) ⇒ B): B = {
     foldLeft(reverseUsingFoldLeft(as), z)((b, a) => f(a, b))
+  }
+
+  def hasSubsequence[A](haystack: List[A], needle: List[A]): Boolean = {
+    @annotation.tailrec
+    def loop[A](l: List[A], sub: List[A], origNeedle: List[A]): Boolean = {
+      (l, sub) match {
+        case (_, Nil) => true
+        case (Cons(x, xs), Cons(y, ys)) if (x == y) => loop(xs, ys, origNeedle)
+        case (Cons(x, xs), Cons(y, ys)) if (x != y) => loop(xs, origNeedle, origNeedle)
+        case _ => false
+      }
+    }
+    loop(haystack, needle, needle)
+  }
+
+  @annotation.tailrec
+  private def startsWith[A](l: List[A], prefix: List[A]): Boolean = (l,prefix) match {
+    case (_,Nil) => true
+    case (Cons(h,t),Cons(h2,t2)) if h == h2 => startsWith(t, t2)
+    case _ => false
+  }
+  @annotation.tailrec
+  def hasSubsequenceBookSolution[A](sup: List[A], sub: List[A]): Boolean = sup match {
+    case Nil => sub == Nil
+    case _ if startsWith(sup, sub) => true
+    case Cons(_,t) => hasSubsequenceBookSolution(t, sub)
   }
 
   /** Returns a List consisting of all but the last element of a List */
@@ -140,12 +166,12 @@ object List {
   def zipIntLists(l1: List[Int], l2: List[Int]): List[Int] = (l1, l2) match {
     case (Nil, _) ⇒ Nil
     case (_, Nil) ⇒ Nil
-    case (Cons(x,xs), Cons(y,ys)) ⇒ Cons(x+y, zipIntLists(xs,ys))
+    case (Cons(x, xs), Cons(y, ys)) ⇒ Cons(x + y, zipIntLists(xs, ys))
   }
 
-  def zipWith[A,B,C](l1: List[A], l2: List[B])(f: (A,B) => C): List[C] = (l1, l2) match {
+  def zipWith[A, B, C](l1: List[A], l2: List[B])(f: (A, B) => C): List[C] = (l1, l2) match {
     case (Nil, _) => Nil
     case (_, Nil) => Nil
-    case (Cons(x,xs), Cons(y,ys)) => Cons(f(x,y), zipWith(xs,ys)(f))
+    case (Cons(x, xs), Cons(y, ys)) => Cons(f(x, y), zipWith(xs, ys)(f))
   }
 }
