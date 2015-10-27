@@ -158,4 +158,9 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
   "Exercise 3.26" should "implement a function maximum that returns the maximum element in a Tree[Int]" in {
     Tree.maximum(Branch(Leaf(5),Leaf(8))) shouldBe 8
   }
+
+  "Exercise 3.27" should "implement depth to return the maximum path length from the root of a tree to any leaf" in {
+    Tree.depth(Branch(Leaf(1),Leaf(2))) shouldBe 1
+    Tree.depth(Branch(Leaf(1),Branch(Leaf(2), Branch(Leaf(3),Leaf(4))))) shouldBe 3
+  }
 }
