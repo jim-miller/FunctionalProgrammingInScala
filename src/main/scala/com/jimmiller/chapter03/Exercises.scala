@@ -185,6 +185,15 @@ case class Branch[A](left: Tree[A], right: Tree[A]) extends Tree[A]
 
 object Tree {
 
+  def maximum(t: Tree[Int]): Int = t match {
+    case Branch(l, r) ⇒ if (maximum(l) > maximum(r)) {
+      maximum(l)
+    } else {
+      maximum(r)
+    }
+    case Leaf(v: Int) ⇒ v
+  }
+
   def size[A](t: Tree[A]): Int = t match {
     case Branch(l, r) ⇒ 1 + size(l) + size(r)
     case Leaf(_) ⇒ 1

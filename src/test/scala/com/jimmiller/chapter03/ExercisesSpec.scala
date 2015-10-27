@@ -154,4 +154,8 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
     Tree.size(twoLeafTree) shouldBe 3
     Tree.size(imbalancedTree) shouldBe 5
   }
+
+  "Exercise 3.26" should "implement a function maximum that returns the maximum element in a Tree[Int]" in {
+    Tree.maximum(Branch(Leaf(5),Leaf(8))) shouldBe 8
+  }
 }
