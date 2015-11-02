@@ -190,6 +190,11 @@ object Tree {
     case Branch(l, r) => 1 + (depth(l) max depth(r))
   }
 
+  def map[A,B](t: Tree[A])(f: A => B): Tree[B] = t match {
+    case Leaf(a) => Leaf(f(a))
+    case Branch(l,r) => Branch(map(l)(f), map(r)(f))
+  }
+
   def maximum(t: Tree[Int]): Int = t match {
     case Branch(l, r) ⇒ if (maximum(l) > maximum(r)) {
       maximum(l)

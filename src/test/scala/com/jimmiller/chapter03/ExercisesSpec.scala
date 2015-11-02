@@ -1,7 +1,6 @@
 package com.jimmiller.chapter03
 
 import com.jimmiller.chapter03.List._
-import com.jimmiller.chapter03.Tree._
 import org.scalatest.{FlatSpecLike, Matchers}
 
 class ExercisesSpec extends FlatSpecLike with Matchers {
@@ -162,5 +161,12 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
   "Exercise 3.27" should "implement depth to return the maximum path length from the root of a tree to any leaf" in {
     Tree.depth(Branch(Leaf(1),Leaf(2))) shouldBe 1
     Tree.depth(Branch(Leaf(1),Branch(Leaf(2), Branch(Leaf(3),Leaf(4))))) shouldBe 3
+  }
+
+  "Exercise 3.28" should "implement map that modifies each element in a tree with a given function" in {
+    val singleLeaf = Leaf(1)
+    val twoLeafTree = Branch(singleLeaf, singleLeaf)
+
+    Tree.map(twoLeafTree)(_ + 1) shouldBe Branch(Leaf(2), Leaf(2))
   }
 }
