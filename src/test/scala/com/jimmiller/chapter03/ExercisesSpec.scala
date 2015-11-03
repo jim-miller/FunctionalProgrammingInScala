@@ -1,9 +1,10 @@
 package com.jimmiller.chapter03
 
-import com.jimmiller.chapter03.List._
 import org.scalatest.{FlatSpecLike, Matchers}
 
-class ExercisesSpec extends FlatSpecLike with Matchers {
+class ListSpec extends FlatSpecLike with Matchers {
+
+  import com.jimmiller.chapter03.List._
 
   "Exercise 3.1" should "produce the predicted output" in {
     val matchedResult = List(1, 2, 3, 4, 5) match {
@@ -142,31 +143,61 @@ class ExercisesSpec extends FlatSpecLike with Matchers {
     hasSubsequence(List(1, 2, 3, 4), List(5)) shouldBe false
     hasSubsequence(List(1, 2, 3, 4), List(1, 3, 4)) shouldBe false
   }
+}
 
-  "Exercise 3.25" should "implement a size function that counts the number of nodes (leaves and branches) in a tree" in
-  {
-    val singleLeaf = Leaf(1)
-    val twoLeafTree = Branch(singleLeaf, singleLeaf)
-    val imbalancedTree = Branch(twoLeafTree, singleLeaf)
+class TreeSpec extends FlatSpecLike with Matchers {
+
+  import com.jimmiller.chapter03.Tree._
+
+  val singleLeaf = Leaf(1)
+  val twoLeafTree = Branch(singleLeaf, singleLeaf)
+  val threeLeafTree = Branch(Leaf(1), Branch(Leaf(2), Leaf(3)))
+
+  val imbalancedTree = Branch(twoLeafTree, threeLeafTree)
+
+  "Exercise 3.25" should
+  "implement a size function that counts the number of nodes (leaves and branches) in a tree" in {
 
     Tree.size(singleLeaf) shouldBe 1
     Tree.size(twoLeafTree) shouldBe 3
-    Tree.size(imbalancedTree) shouldBe 5
+    Tree.size(imbalancedTree) shouldBe 9
   }
 
   "Exercise 3.26" should "implement a function maximum that returns the maximum element in a Tree[Int]" in {
-    Tree.maximum(Branch(Leaf(5),Leaf(8))) shouldBe 8
+    maximum(Branch(Leaf(5), Leaf(8))) shouldBe 8
   }
 
   "Exercise 3.27" should "implement depth to return the maximum path length from the root of a tree to any leaf" in {
-    Tree.depth(Branch(Leaf(1),Leaf(2))) shouldBe 1
-    Tree.depth(Branch(Leaf(1),Branch(Leaf(2), Branch(Leaf(3),Leaf(4))))) shouldBe 3
+    depth(Branch(Leaf(1), Leaf(2))) shouldBe 1
+    depth(Branch(Leaf(1), Branch(Leaf(2), Branch(Leaf(3), Leaf(4))))) shouldBe 3
   }
 
   "Exercise 3.28" should "implement map that modifies each element in a tree with a given function" in {
-    val singleLeaf = Leaf(1)
-    val twoLeafTree = Branch(singleLeaf, singleLeaf)
-
-    Tree.map(twoLeafTree)(_ + 1) shouldBe Branch(Leaf(2), Leaf(2))
+    map(twoLeafTree)(_ + 1) shouldBe Branch(Leaf(2), Leaf(2))
   }
+
+  /**
+   * Generalize size, maximum, depth, and map, writing a new function fold that
+   * abstracts over their similarities.
+   */
+  "Exercise 3.29" should "implement fold" in {
+    fold(twoLeafTree)(_ => 1)(1 + _ + _) shouldBe 3 // 1 Branch + 2 Leaves
+  }
+
+  "Exercise 3.29" should "implement size using fold" in {
+    sizeUsingFold(threeLeafTree) shouldBe Tree.size(threeLeafTree)
+  }
+
+  "Exercise 3.29" should "implement maximum using fold" in {
+    maximumUsingFold(imbalancedTree) shouldBe maximum(imbalancedTree)
+  }
+
+  "Exercise 3.29" should "implement depth using fold" in {
+    depthUsingFold(imbalancedTree) shouldBe depth(imbalancedTree)
+  }
+
+  "Exercise 3.29" should "implement map using fold" in {
+    mapUsingFold(twoLeafTree)(_ + 1) shouldBe map(twoLeafTree)(_ + 1)
+  }
+
 }
