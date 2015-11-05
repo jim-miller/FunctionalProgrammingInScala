@@ -83,7 +83,7 @@ class ListSpec extends FlatSpecLike with Matchers {
   }
 
   "Exercise 3.13" should "expresses foldLeft as an operation of foldRight and vice versa" in {
-    foldLeftUsingFoldRight(List(6, 6), 0)(_ + _) shouldBe 12
+    foldLeftUsingFoldRight(List(6, 6), 0)(_ + _) shouldBe foldLeft(List(6,6), 0)(_ + _)
     foldRightUsingFoldLeft(List(6, 6), 0)(_ + _) shouldBe 12
   }
 
